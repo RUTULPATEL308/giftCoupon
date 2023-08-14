@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.staticfiles.url import staticfiles_urlpatterns
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -10,3 +11,4 @@ urlpatterns = [
     path('error', views.error, name='error'),
     path('verify', views.handleRedeemCode, name="handleRedeemCode"),
 ]
+urlpatterns += staticfiles_urlpatterns()
