@@ -53,3 +53,4 @@ plotly==5.15.0
 prometheus-client==0.17.0
 prompt-toolkit==3.0.39
 psycopg2
+requests
