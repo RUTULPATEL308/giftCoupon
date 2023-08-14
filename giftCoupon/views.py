@@ -33,14 +33,17 @@ def handleRedeemCode(request):
         review=request.POST.get('review')
 
         print(uname, phone, email, coupon_code, upi_address, review)
-        if redeemTbl.objects.filter(Ccode=coupon_code).exists():
-            message = "This coupon is already used."
-            return render(request, 'error_page.html', {'msg': message})
-
-        RedeemCoupon = redeemTbl(name=uname, mobile=phone, email=email, Ccode=coupon_code, upi_address=upi_address, review=review)     
-        RedeemCoupon.save()
-
-        return redirect('/thankyou')
+        if couponCodes.objects.filter(Ccode=coupon_code).exists():
+            if redeemTbl.objects.filter(Ccode=coupon_code).exists():
+             message = "This coupon is already used."
+             return render(request, 'error_page.html', {'msg': message})
+            else:
+                RedeemCoupon = redeemTbl(name=uname, mobile=phone, email=email, Ccode=coupon_code, upi_address=upi_address, review=review)     
+                RedeemCoupon.save()
+                return redirect('/thankyou')
+        else:
+             message = "Invalide Coupon Code ."
+             return render(request, 'error_page.html', {'msg': message})
 
     message = "This link is not working."
     return render(request, 'error_page.html', {'msg': message})
