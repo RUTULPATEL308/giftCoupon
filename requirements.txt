@@ -32,7 +32,6 @@ gitdb==4.0.10
 GitPython==3.1.31
 gunicorn==21.2.0
 idna==3.4
-ipykernel==6.24.0
 ipython==8.14.0
 isoduration==20.11.0
 jedi==0.18.2
