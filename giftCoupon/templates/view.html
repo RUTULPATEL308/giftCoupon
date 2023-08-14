@@ -1,0 +1,97 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="icon" type="image/x-icon" href="{% static 'img/TE_LOGO.png' %}">
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts/icomoon/style.css">
+<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<title>TIDIX | Redeem Form</title>
+</head>
+<body>
+<div class="content">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-lg-6 mr-auto">
+<div class="mb-5">
+<h3 class="text-white mb-4">Contact Info</h3>
+<p class="text-white">We are here for your help. If you have any problems regard Redeem Code or Redeem Coupon, Contact on below details.</p>
+</div>
+<div class="row">
+<div class="col-md-6">
+<h3 class="text-white h5 mb-3">Mehsana</h3>
+<ul class="list-unstyled mb-5">
+<li class="d-flex text-white mb-2">
+<span class="mr-3"><span class="icon-map"></span></span>Shop No. 3, First Floor, Himalaya Complex, S.T WorkShop Road,<br> Mahesana- 384002
+</li>
+<li class="d-flex text-white mb-2"><span class="mr-3"><span class="icon-phone"></span></span> +91 83208 37229</li><li class="d-flex text-white mb-2"><span class="mr-3"><span class="icon-phone"></span></span> tidixelectronics@gmail.com</li>
+</ul>
+</div>
+</div> 
+</div>
+<div class="col-lg-6">
+<div class="box">
+<h3 class="heading">Gift Coupon Redeem</h3>
+<form action="/verify" class="mb-5"  id="contactForm" name="contactForm" method="POST">
+{% csrf_token %}
+<div class="row">
+<div class="col-md-12 form-group">
+<label for="name" class="col-form-label">Name<em style="color: red;">*</em></label>
+<input type="text" class="form-control" name="name" id="name" minlength="4" maxlength="20" required>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12 form-group">
+<label for="email" class="col-form-label">Email</label>
+<input type="text" class="form-control" name="email" id="email">
+</div>
+</div>
+<div class="row">
+    <div class="col-md-12 form-group">
+    <label for="phone" class="col-form-label">Mobile No.<em style="color: red;">*</em></label>
+    <input type="tel" class="form-control" name="phone" id="myform_phone" pattern="[6-9]{1}[0-9]{9}" minlength="10" maxlength="10" size="10" required>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 form-group">
+        <label for="code" class="col-form-label">Redeem Code<em style="color: red;">*</em></label>
+        <input type="text" class="form-control" name="Ccode_duplicate" id="code" value="{{ fetched_data }}" disabled>
+        <input type="hidden" class="form-control" name="Ccode" id="code" value="{{ fetched_data }}">
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+            <label for="upi" class="col-form-label">UPI Details<em style="color: red;">*</em></label>
+            <input type="text" class="form-control" name="upid" id="upid" pattern="[a-zA-Z0-9.-]{2, 256}@[a-zA-Z][a-zA-Z]{2, 64}" required>
+            </div>
+            </div>
+<div class="row mb-3">
+<div class="col-md-12 form-group">
+<label for="message" class="col-form-label">Review</label>
+<textarea class="form-control" name="review" id="review" cols="30" rows="7"></textarea>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<input type="submit" value="Submit" class="btn btn-block btn-primary rounded-0 py-2 px-4">
+<span class="submitting"></span>
+<div class="error" > <span>{{ msg }}</span></div>
+{% if coupon.is_date_in_past %}
+<div class="error" > <p>This date is in the past.</p></div>
+{% endif %}
+</div>
+</div>
+</form>
+<div id="form-message-warning mt-4" ></div>
+</div>
+</div>
+</div>
+</div>
+<script href="{% static 'js/script.js' %}"></script>
+</body>
+</html>
