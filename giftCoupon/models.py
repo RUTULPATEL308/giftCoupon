@@ -10,7 +10,7 @@ class redeemTbl(models.Model):
     code_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=20, null=True)
     email = models.CharField(max_length=50)
-    mobile = models.IntegerField(null=False)
+    mobile = models.CharField(max_length=50, null=False)
     Ccode = models.CharField(max_length=50, null=False, unique=True)
     upi_address = models.CharField(max_length=30, null=False)
     review = models.TextField(null=True)
