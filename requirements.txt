@@ -1,4 +1,4 @@
-python -m pip install --upgrade pip
+pip install --upgrade pip
 anyio==3.7.1
 argon2-cffi==21.3.0
 argon2-cffi-bindings==21.2.0
